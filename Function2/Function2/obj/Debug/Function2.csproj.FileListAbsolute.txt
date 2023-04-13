@@ -1,0 +1,6 @@
+C:\Users\Nimap\Desktop\NimapCheckList\Function2\Function2\obj\Debug\Function2.csproj.CoreCompileInputs.cache
+C:\Users\Nimap\Desktop\NimapCheckList\Function2\Function2\bin\Debug\Function2.exe.config
+C:\Users\Nimap\Desktop\NimapCheckList\Function2\Function2\bin\Debug\Function2.exe
+C:\Users\Nimap\Desktop\NimapCheckList\Function2\Function2\bin\Debug\Function2.pdb
+C:\Users\Nimap\Desktop\NimapCheckList\Function2\Function2\obj\Debug\Function2.exe
+C:\Users\Nimap\Desktop\NimapCheckList\Function2\Function2\obj\Debug\Function2.pdb

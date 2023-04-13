@@ -1,0 +1,6 @@
+C:\Users\Nimap\Desktop\NimapCheckList\NestedIf\NestedIf\bin\Debug\NestedIf.exe.config
+C:\Users\Nimap\Desktop\NimapCheckList\NestedIf\NestedIf\bin\Debug\NestedIf.exe
+C:\Users\Nimap\Desktop\NimapCheckList\NestedIf\NestedIf\bin\Debug\NestedIf.pdb
+C:\Users\Nimap\Desktop\NimapCheckList\NestedIf\NestedIf\obj\Debug\NestedIf.csproj.CoreCompileInputs.cache
+C:\Users\Nimap\Desktop\NimapCheckList\NestedIf\NestedIf\obj\Debug\NestedIf.exe
+C:\Users\Nimap\Desktop\NimapCheckList\NestedIf\NestedIf\obj\Debug\NestedIf.pdb

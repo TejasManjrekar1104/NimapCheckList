@@ -1,0 +1,6 @@
+C:\Users\Nimap\Desktop\NimapCheckList\PropertiesCode\PropertiesCode\bin\Debug\PropertiesCode.exe.config
+C:\Users\Nimap\Desktop\NimapCheckList\PropertiesCode\PropertiesCode\bin\Debug\PropertiesCode.exe
+C:\Users\Nimap\Desktop\NimapCheckList\PropertiesCode\PropertiesCode\bin\Debug\PropertiesCode.pdb
+C:\Users\Nimap\Desktop\NimapCheckList\PropertiesCode\PropertiesCode\obj\Debug\PropertiesCode.csproj.CoreCompileInputs.cache
+C:\Users\Nimap\Desktop\NimapCheckList\PropertiesCode\PropertiesCode\obj\Debug\PropertiesCode.exe
+C:\Users\Nimap\Desktop\NimapCheckList\PropertiesCode\PropertiesCode\obj\Debug\PropertiesCode.pdb

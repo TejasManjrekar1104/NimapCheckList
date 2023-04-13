@@ -1,0 +1,6 @@
+C:\Users\Nimap\Desktop\NimapCheckList\Properties2\Properties2\obj\Debug\Properties2.csproj.CoreCompileInputs.cache
+C:\Users\Nimap\Desktop\NimapCheckList\Properties2\Properties2\bin\Debug\Properties2.exe.config
+C:\Users\Nimap\Desktop\NimapCheckList\Properties2\Properties2\bin\Debug\Properties2.exe
+C:\Users\Nimap\Desktop\NimapCheckList\Properties2\Properties2\bin\Debug\Properties2.pdb
+C:\Users\Nimap\Desktop\NimapCheckList\Properties2\Properties2\obj\Debug\Properties2.exe
+C:\Users\Nimap\Desktop\NimapCheckList\Properties2\Properties2\obj\Debug\Properties2.pdb

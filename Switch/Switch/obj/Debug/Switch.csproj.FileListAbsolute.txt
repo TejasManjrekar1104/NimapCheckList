@@ -1,0 +1,6 @@
+C:\Users\Nimap\Desktop\NimapCheckList\Switch\Switch\bin\Debug\Switch.exe.config
+C:\Users\Nimap\Desktop\NimapCheckList\Switch\Switch\bin\Debug\Switch.exe
+C:\Users\Nimap\Desktop\NimapCheckList\Switch\Switch\bin\Debug\Switch.pdb
+C:\Users\Nimap\Desktop\NimapCheckList\Switch\Switch\obj\Debug\Switch.csproj.CoreCompileInputs.cache
+C:\Users\Nimap\Desktop\NimapCheckList\Switch\Switch\obj\Debug\Switch.exe
+C:\Users\Nimap\Desktop\NimapCheckList\Switch\Switch\obj\Debug\Switch.pdb

@@ -1,0 +1,7 @@
+C:\Users\Nimap\Desktop\NimapCheckList\FineLargeAndSecondLarge\FineLargeAndSecondLarge\bin\Debug\FineLargeAndSecondLarge.exe.config
+C:\Users\Nimap\Desktop\NimapCheckList\FineLargeAndSecondLarge\FineLargeAndSecondLarge\bin\Debug\FineLargeAndSecondLarge.exe
+C:\Users\Nimap\Desktop\NimapCheckList\FineLargeAndSecondLarge\FineLargeAndSecondLarge\bin\Debug\FineLargeAndSecondLarge.pdb
+C:\Users\Nimap\Desktop\NimapCheckList\FineLargeAndSecondLarge\FineLargeAndSecondLarge\obj\Debug\FineLargeAndSecondLarge.csproj.AssemblyReference.cache
+C:\Users\Nimap\Desktop\NimapCheckList\FineLargeAndSecondLarge\FineLargeAndSecondLarge\obj\Debug\FineLargeAndSecondLarge.csproj.CoreCompileInputs.cache
+C:\Users\Nimap\Desktop\NimapCheckList\FineLargeAndSecondLarge\FineLargeAndSecondLarge\obj\Debug\FineLargeAndSecondLarge.exe
+C:\Users\Nimap\Desktop\NimapCheckList\FineLargeAndSecondLarge\FineLargeAndSecondLarge\obj\Debug\FineLargeAndSecondLarge.pdb

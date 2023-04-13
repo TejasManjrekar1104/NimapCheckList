@@ -1,0 +1,6 @@
+C:\Users\Nimap\Desktop\NimapCheckList\DelegateCode\DelegateCode\bin\Debug\DelegateCode.exe.config
+C:\Users\Nimap\Desktop\NimapCheckList\DelegateCode\DelegateCode\bin\Debug\DelegateCode.exe
+C:\Users\Nimap\Desktop\NimapCheckList\DelegateCode\DelegateCode\bin\Debug\DelegateCode.pdb
+C:\Users\Nimap\Desktop\NimapCheckList\DelegateCode\DelegateCode\obj\Debug\DelegateCode.csproj.CoreCompileInputs.cache
+C:\Users\Nimap\Desktop\NimapCheckList\DelegateCode\DelegateCode\obj\Debug\DelegateCode.exe
+C:\Users\Nimap\Desktop\NimapCheckList\DelegateCode\DelegateCode\obj\Debug\DelegateCode.pdb

@@ -1,0 +1,6 @@
+C:\Users\Nimap\Desktop\NimapCheckList\Calculator\Calculator\bin\Debug\Calculator.exe.config
+C:\Users\Nimap\Desktop\NimapCheckList\Calculator\Calculator\bin\Debug\Calculator.exe
+C:\Users\Nimap\Desktop\NimapCheckList\Calculator\Calculator\bin\Debug\Calculator.pdb
+C:\Users\Nimap\Desktop\NimapCheckList\Calculator\Calculator\obj\Debug\Calculators.csproj.CoreCompileInputs.cache
+C:\Users\Nimap\Desktop\NimapCheckList\Calculator\Calculator\obj\Debug\Calculator.exe
+C:\Users\Nimap\Desktop\NimapCheckList\Calculator\Calculator\obj\Debug\Calculator.pdb

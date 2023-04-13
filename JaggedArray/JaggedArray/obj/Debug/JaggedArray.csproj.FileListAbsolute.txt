@@ -1,0 +1,6 @@
+C:\Users\Nimap\Desktop\NimapCheckList\JaggedArray\JaggedArray\bin\Debug\JaggedArray.exe.config
+C:\Users\Nimap\Desktop\NimapCheckList\JaggedArray\JaggedArray\bin\Debug\JaggedArray.exe
+C:\Users\Nimap\Desktop\NimapCheckList\JaggedArray\JaggedArray\bin\Debug\JaggedArray.pdb
+C:\Users\Nimap\Desktop\NimapCheckList\JaggedArray\JaggedArray\obj\Debug\JaggedArray.csproj.CoreCompileInputs.cache
+C:\Users\Nimap\Desktop\NimapCheckList\JaggedArray\JaggedArray\obj\Debug\JaggedArray.exe
+C:\Users\Nimap\Desktop\NimapCheckList\JaggedArray\JaggedArray\obj\Debug\JaggedArray.pdb
