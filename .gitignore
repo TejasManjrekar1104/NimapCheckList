@@ -5,3 +5,5 @@ properties/
 *.config
 *.csproj
 *.txt
+*.xml
+*.dll
