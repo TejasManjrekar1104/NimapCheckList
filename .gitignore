@@ -4,3 +4,4 @@ obj/
 properties/
 *.config
 *.csproj
+*.txt
