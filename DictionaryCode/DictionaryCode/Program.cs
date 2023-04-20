@@ -16,7 +16,7 @@ namespace DictionaryCode
             d.Add(5, "Te");
             d.Add(3, null);
             d.Add(6, null);
-            d.Add(1, "Tej");
+            d.Add(2, "Tej");
 
 
             foreach (KeyValuePair<int,string> print in d)
