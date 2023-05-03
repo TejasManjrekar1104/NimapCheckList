@@ -14,10 +14,27 @@ namespace ProductManage.Controllers
         MyDbContext db = new MyDbContext();
 
         // GET: Product
-        public async Task<ActionResult> ProductList()
+        public ActionResult ProductList()
         {
-            var data = db.Categories.ToListAsync();
+            var data = db.Categories.ToList();
             return View(data);
         }
+
+        public ActionResult AddProduct()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddProduct(Product p)
+        {
+            if(ModelState.IsValid == true) {
+                db.Products.Add(p);
+                db.SaveChanges();
+            }
+                return RedirectToAction("ProductList", "Product");
+        }
+
+
     }
 }
