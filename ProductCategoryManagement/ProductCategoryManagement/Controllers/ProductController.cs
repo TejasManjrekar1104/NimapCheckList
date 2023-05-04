@@ -26,7 +26,7 @@ namespace ProductCategoryManagement.Controllers
         public ActionResult AddProduct()
         {
             List<Category> categoryname = db.Category.ToList();
-            ViewBag.Category = new SelectList(categoryname, "CategoryId", "CategoryName");
+            ViewBag.Category = new SelectList(categoryname, "CategoryName", "CategoryName");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace ProductCategoryManagement.Controllers
         public ActionResult DeleteProduct()
         { 
             return View();
-        }
+        } 
 
         [HttpPost]
         public ActionResult DeleteProduct(int id)

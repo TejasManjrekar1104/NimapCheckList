@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ProductCategoryManagement.Models
 {
-    public class Product 
+    public class Product
     {
         public int ProductId { get; set; }
 

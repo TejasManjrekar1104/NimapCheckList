@@ -54,7 +54,7 @@ namespace ProductCategoryManagement.Controllers
         }
 
         //ForDeletingData
-        public ActionResult DeleteCategory()
+        public ActionResult DeleteCategory() 
         { 
             return View();
         }
