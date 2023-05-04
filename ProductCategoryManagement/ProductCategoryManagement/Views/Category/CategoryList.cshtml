@@ -1,33 +1,54 @@
-﻿@model IEnumerable<ProductCategoryManagement.Models.Category>
+﻿
+@model PagedList.IPagedList<ProductCategoryManagement.Models.Category>
+@using PagedList;
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "CategoryList";
 }
 
-<h2>CategoryList</h2>
+<style>
+    .image {
+        background-image: url('https://coolbackgrounds.io/images/backgrounds/white/white-triangle-369b8d2d.jpg');
+    }
+</style>
+<body class="image">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </th>
-        <th></th>
-    </tr>
+    <center><h2><u>Category Table</u></h2></center>
 
-@foreach (var item in Model) {
+    <h4>
+        <b>
+            @Html.ActionLink("Insert New", "AddCategory")
+        </b>
+    </h4>
+    <br />
+    <table class="table table-striped">
+        <tr>
+            <th>CategoryId</th>
+            <th>CategoryName</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryId)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.CategoryName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CategoryId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CategoryId })
+            @Html.ActionLink("Edit", "EditCategory", new { id = item.CategoryId }) |
+            @Html.ActionLink("Details", "CategoryDetails", new { id = item.CategoryId }) |
+            @Html.ActionLink("Delete", "DeleteCategory", new { id = item.CategoryId })
         </td>
     </tr>
-}
-
-</table>
+        }
+    </table>
+    <div>
+        page @(Model.PageCount <Model.PageNumber ?0:Model.PageNumber)/@Model.PageCount
+    </div>
+    <div>
+        @Html.PagedListPager(Model, page => Url.Action("CategoryList", new { page = page }))
+    </div>
+    </body>

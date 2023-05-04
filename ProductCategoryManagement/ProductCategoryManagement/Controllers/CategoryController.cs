@@ -2,6 +2,7 @@
 using ProductCategoryManagement.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -23,6 +24,7 @@ namespace ProductCategoryManagement.Controllers
             return View(cdata);
         }
 
+        //ForAddingData
         public ActionResult AddCategory()
         {
             return View();
@@ -33,8 +35,56 @@ namespace ProductCategoryManagement.Controllers
         {
             db.Category.Add(c);
             db.SaveChanges();
-            return RedirectToAction("AddCategory", "Category");
+            return RedirectToAction("CategoryList", "Category");
         }
+
+        //ForEditingData
+        public ActionResult EditCategory(int id)
+        {
+            var row = db.Category.Where(model => model.CategoryId == id).FirstOrDefault();
+            return View(row);
+        }
+
+        [HttpPost]
+        public ActionResult EditCategory(Category c)
+        {
+            db.Entry(c).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("CategoryList", "Category");
+        }
+
+        //ForDeletingData
+        public ActionResult DeleteCategory()
+        { 
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCategory(int id)
+        {
+
+            using (var context = new ServiceContext())
+            {
+                var _data = context.Category.FirstOrDefault(x => x.CategoryId == id);
+                if (_data != null)
+                {
+                    context.Category.Remove(_data);
+                    context.SaveChanges();
+                    return RedirectToAction("CategoryList", "Category");
+                }
+                else
+                    return View();
+            }
+        }
+
+        //ForDisplayDetails
+        public ActionResult CategoryDetails(int id)
+        {
+            var detail = db.Category.Where(model => model.CategoryId == id).FirstOrDefault();
+            return View(detail);
+        }
+
+      
 
 
     }
