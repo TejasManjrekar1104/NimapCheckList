@@ -21,13 +21,13 @@ namespace ProductCategoryManagement.Controllers
             var pageNumber = page ?? 1;
             var pageSize = 5;
             var cdata = db.Category.OrderBy(x => x.CategoryId).ToPagedList(pageNumber, pageSize);
-            return View(cdata);
+            return View(cdata); 
         }
 
         //ForAddingData
         public ActionResult AddCategory()
         {
-            return View();
+            return View(); 
         }
 
         [HttpPost]
@@ -35,14 +35,14 @@ namespace ProductCategoryManagement.Controllers
         {
             db.Category.Add(c);
             db.SaveChanges();
-            return RedirectToAction("CategoryList", "Category");
+            return RedirectToAction("CategoryList", "Category"); 
         }
 
         //ForEditingData
         public ActionResult EditCategory(int id)
         {
             var row = db.Category.Where(model => model.CategoryId == id).FirstOrDefault();
-            return View(row);
+            return View(row); 
         }
 
         [HttpPost]
@@ -50,20 +50,20 @@ namespace ProductCategoryManagement.Controllers
         {
             db.Entry(c).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("CategoryList", "Category");
+            return RedirectToAction("CategoryList", "Category"); 
         }
 
         //ForDeletingData
         public ActionResult DeleteCategory() 
         { 
-            return View();
+            return View(); 
         }
 
         [HttpPost]
         public ActionResult DeleteCategory(int id)
         {
 
-            using (var context = new ServiceContext())
+            using (var context = new ServiceContext()) 
             {
                 var _data = context.Category.FirstOrDefault(x => x.CategoryId == id);
                 if (_data != null)
@@ -72,7 +72,7 @@ namespace ProductCategoryManagement.Controllers
                     context.SaveChanges();
                     return RedirectToAction("CategoryList", "Category");
                 }
-                else
+                else 
                     return View();
             }
         }
@@ -81,11 +81,11 @@ namespace ProductCategoryManagement.Controllers
         public ActionResult CategoryDetails(int id)
         {
             var detail = db.Category.Where(model => model.CategoryId == id).FirstOrDefault();
-            return View(detail);
+            return View(detail); 
         }
 
       
 
 
     }
-}
+} 

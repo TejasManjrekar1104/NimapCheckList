@@ -37,7 +37,7 @@ namespace ProductCategoryManagement.Controllers
             db.SaveChanges();
             return RedirectToAction("ProductList", "Product");
 
-           
+
         }
 
         //ForEditingData
@@ -57,9 +57,9 @@ namespace ProductCategoryManagement.Controllers
 
         //ForDeletingData
         public ActionResult DeleteProduct()
-        { 
+        {
             return View();
-        } 
+        }
 
         [HttpPost]
         public ActionResult DeleteProduct(int id)

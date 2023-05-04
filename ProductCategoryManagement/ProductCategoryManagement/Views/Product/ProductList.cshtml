@@ -1,53 +1,53 @@
 ﻿@model IEnumerable<ProductCategoryManagement.Models.Product>
 
 @{
-    ViewBag.Title = "ProductList";
+    ViewBag.Title = "ProductList"; 
 }
 
 <style>
     .image {
-        background-image: url('https://coolbackgrounds.io/images/backgrounds/white/white-triangle-369b8d2d.jpg');
+        background-image: url('https://coolbackgrounds.io/images/backgrounds/white/white-triangle-369b8d2d.jpg'); 
     }
 </style>
 <body class="image">
-    <h2>ProductList</h2> 
+    <h2>ProductList</h2>  
 
     <p>
-        @Html.ActionLink("Create New", "AddProduct")
+        @Html.ActionLink("Create New", "AddProduct")  
     </p>
-    <table class="table">
+    <table class="table"> 
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ProductId)
+                @Html.DisplayNameFor(model => model.ProductId) 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductName)
+                @Html.DisplayNameFor(model => model.ProductName) 
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductPrice)
+                @Html.DisplayNameFor(model => model.ProductPrice) 
             </th>
             <th></th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model) 
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductId)
+                    @Html.DisplayFor(modelItem => item.ProductId) 
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)
+                    @Html.DisplayFor(modelItem => item.ProductName)  
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                    @Html.DisplayFor(modelItem => item.ProductPrice) 
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "EditProduct", new { id = item.ProductId }) |
                     @Html.ActionLink("Details", "ProductDetails", new { id = item.ProductId }) |
-                    @Html.ActionLink("Delete", "DeleteProduct", new { id = item.ProductId })
+                    @Html.ActionLink("Delete", "DeleteProduct", new { id = item.ProductId }) 
                 </td>
             </tr>
         }
 
     </table>
-    </body>
+    </body> 

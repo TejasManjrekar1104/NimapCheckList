@@ -6,12 +6,12 @@ using System.Web;
 
 namespace ProductCategoryManagement.Models
 {
-    public class Category
+    public class Category 
     {
         [Key]
-        public int CategoryId { get; set; }
+        public int CategoryId { get; set; } 
 
         [Required]
-        public string CategoryName { get; set; }
+        public string CategoryName { get; set; } 
     }
 }
