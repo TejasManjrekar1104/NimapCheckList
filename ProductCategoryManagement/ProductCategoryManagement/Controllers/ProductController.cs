@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace ProductCategoryManagement.Controllers
 {
@@ -26,7 +27,7 @@ namespace ProductCategoryManagement.Controllers
         public ActionResult AddProduct()
         {
             List<Category> categoryname = db.Category.ToList();
-            ViewBag.Category = new SelectList(categoryname, "CategoryName", "CategoryName");
+            ViewBag.Category = new SelectList(categoryname, "CategoryId", "CategoryName");
             return View();
         }
 
@@ -36,13 +37,13 @@ namespace ProductCategoryManagement.Controllers
             db.Product.Add(p);
             db.SaveChanges();
             return RedirectToAction("ProductList", "Product");
-
-
         }
 
         //ForEditingData
         public ActionResult EditProduct(int id)
         {
+            List<Category> categoryname = db.Category.ToList();
+            ViewBag.Category = new SelectList(categoryname, "CategoryName", "CategoryName");
             var row = db.Product.Where(model => model.ProductId == id).FirstOrDefault();
             return View(row);
         }
@@ -50,32 +51,31 @@ namespace ProductCategoryManagement.Controllers
         [HttpPost]
         public ActionResult EditProduct(Product p)
         {
-            db.Entry(p).State = EntityState.Modified;
+            var prod = db.Product.FirstOrDefault(x => x.ProductId == p.ProductId);
+
+            prod.ProductName = p.ProductName;
+            prod.ProductId = p.ProductId;
+            prod.ProductPrice = p.ProductPrice;
+            prod.CategoryId = 1;
+            db.Entry(prod).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("ProductList", "Product");
         }
 
         //ForDeletingData
-        public ActionResult DeleteProduct()
+        public ActionResult DeleteProduct(int? ProductId)
         {
-            return View();
+            Product product = db.Product.FirstOrDefault(x => x.ProductId == ProductId);
+            return View(product);
         }
 
-        [HttpPost]
-        public ActionResult DeleteProduct(int id)
+        [HttpPost, ActionName("DeleteProduct")]
+        public ActionResult Delete(int ProductId, Product pro)
         {
-            using (var context = new ServiceContext())
-            {
-                var _data = context.Product.FirstOrDefault(x => x.ProductId == id);
-                if (_data != null)
-                {
-                    context.Product.Remove(_data);
-                    context.SaveChanges();
-                    return RedirectToAction("ProductList", "Product");
-                }
-                else
-                    return View();
-            }
+            Product product = db.Product.Find(ProductId);
+            db.Product.Remove(product);
+            db.SaveChanges();
+            return RedirectToAction("GetProductIndex", new RouteValueDictionary(new { CategoryId = pro.CategoryId }));
         }
 
         //ForDisplayDetails

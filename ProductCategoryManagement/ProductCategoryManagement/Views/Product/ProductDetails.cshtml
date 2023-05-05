@@ -1,42 +1,49 @@
 ﻿@model ProductCategoryManagement.Models.Product
 
 @{
-    ViewBag.Title = "ProductDetails"; 
+    ViewBag.Title = "ProductDetails";
 }
 
-<h2>ProductDetails</h2>
+<style>
+    .image {
+        background-image: url('https://coolbackgrounds.io/images/backgrounds/white/white-triangle-369b8d2d.jpg');
+    }
+</style>
+<body class="image">
+    <h2>ProductDetails</h2>
 
-<div> 
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal"> 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductId)  
-        </dt>
+    <div>
+        <h4>Product</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductId) 
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ProductId)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductName) 
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </dt>
 
-        <dd> 
-            @Html.DisplayFor(model => model.ProductName) 
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ProductName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductPrice) 
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProductPrice)  
-        </dd>
-         
-    </dl> 
-</div>
-<p>
-    @Html.ActionLink("Edit", "EditProduct", new { id = Model.ProductId }) |
-    @Html.ActionLink("Back to List", "ProductList") 
-</p>
+            <dd>
+                @Html.DisplayFor(model => model.ProductPrice)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "EditProduct", new { id = Model.ProductId }) |
+        @Html.ActionLink("Back to List", "ProductList")
+    </p>
+    </body>
