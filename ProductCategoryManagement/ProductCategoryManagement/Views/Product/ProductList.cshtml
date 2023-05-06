@@ -1,53 +1,58 @@
-﻿@model IEnumerable<ProductCategoryManagement.Models.Product>
+﻿@model PagedList.IPagedList<ProductCategoryManagement.Models.Product>
+
+@using ProductCategoryManagement.Models;
+@using PagedList;
+@using PagedList.Mvc;
 
 @{
-    ViewBag.Title = "ProductList"; 
+    ViewBag.Title = "Index";
 }
 
 <style>
     .image {
-        background-image: url('https://coolbackgrounds.io/images/backgrounds/white/white-triangle-369b8d2d.jpg'); 
+        background-image: url('https://coolbackgrounds.io/images/backgrounds/white/white-triangle-369b8d2d.jpg');
     }
 </style>
 <body class="image">
-    <center><h2><u>ProductList</u></h2></center>  
 
-    <p>
-        @Html.ActionLink("Create New", "AddProduct")  
-    </p>
-    <table class="table"> 
+    <center><h2><u>Product Table</u></h2></center>
+    <h4>
+        <b>
+            @Html.ActionLink("Insert New", "CategoryList")
+        </b>
+    </h4>
+    <br />
+    <table class="table table-striped">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductId) 
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductName) 
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductPrice) 
-            </th>
-            <th></th>
+            <th>ProductName</th>
+            <th>ProductPrice</th>
+            <th>CategoryName</th>
+
         </tr>
 
-        @foreach (var item in Model) 
+        @foreach (var item in Model)
         {
             <tr>
+                <td>@item.ProductName</td>
+                <td>@item.ProductPrice</td>
+                <td>@item.</td>
+                <td>@item.</td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductId) 
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductName)  
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductPrice) 
-                </td>
-                <td>
+
                     @Html.ActionLink("Edit", "EditProduct", new { id = item.ProductId }) |
                     @Html.ActionLink("Details", "ProductDetails", new { id = item.ProductId }) |
-                    @Html.ActionLink("Delete", "DeleteProduct", new { id = item.ProductId }) 
+                    @Html.ActionLink("Delete", "DeleteProduct", new { id = item.ProductId })
                 </td>
             </tr>
         }
 
     </table>
-    </body> 
+
+    <div>
+        page @(Model.PageCount <Model.PageNumber ?0:Model.PageNumber)/@Model.PageCount
+    </div>
+    <div>
+        @Html.PagedListPager(Model, page => Url.Action("ProductList", new { page = page }))
+    </div>
+
+</body>

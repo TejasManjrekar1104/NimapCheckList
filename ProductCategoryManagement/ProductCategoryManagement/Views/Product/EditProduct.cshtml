@@ -11,7 +11,7 @@
 </style>
 <body class="image">
     <h2>EditProduct</h2>  
-
+    <a href="~/Views/Product/EditProduct.cshtml">~/Views/Product/EditProduct.cshtml</a>
 
     @using (Html.BeginForm()) 
     {
@@ -39,13 +39,13 @@
                 </div>
             </div>
 
-            @*<div class="form-group">
+            <div class="form-group">
                 @Html.LabelFor(model => model.Category.CategoryName, "CategoryName", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.Category.CategoryName, ViewBag.Category as SelectList, "Select Category", new { @class = "control-label col-md-2" })
                     @Html.ValidationMessageFor(model => model.Category.CategoryName, "", new { @class = "text-danger" })
                 </div>
-            </div>*@
+            </div>
               
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">

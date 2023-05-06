@@ -34,9 +34,17 @@ namespace ProductCategoryManagement.Controllers
         [HttpPost]
         public ActionResult AddProduct(Product p)
         {
-            db.Product.Add(p);
-            db.SaveChanges();
-            return RedirectToAction("ProductList", "Product");
+            try
+            {
+                db.Product.Add(p);
+                db.SaveChanges();
+                return RedirectToAction("ProductList", "Product");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         //ForEditingData
@@ -56,26 +64,27 @@ namespace ProductCategoryManagement.Controllers
             prod.ProductName = p.ProductName;
             prod.ProductId = p.ProductId;
             prod.ProductPrice = p.ProductPrice;
-            prod.CategoryId = 1;
+            prod.CategoryId = p.CategoryId;
             db.Entry(prod).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("ProductList", "Product");
         }
 
         //ForDeletingData
-        public ActionResult DeleteProduct(int? ProductId)
+        public ActionResult DeleteProduct(int id)
         {
-            Product product = db.Product.FirstOrDefault(x => x.ProductId == ProductId);
-            return View(product);
+            Product p = db.Product.FirstOrDefault(model => model.ProductId == id);
+            return View(p);
         }
 
-        [HttpPost, ActionName("DeleteProduct")]
-        public ActionResult Delete(int ProductId, Product pro)
+        [HttpPost]
+        [ActionName("DeleteProduct")]
+        public ActionResult DeleteProductConfirm(int id)
         {
-            Product product = db.Product.Find(ProductId);
-            db.Product.Remove(product);
+            Product p = db.Product.FirstOrDefault(model => model.ProductId == id);
+            db.Product.Remove(p);
             db.SaveChanges();
-            return RedirectToAction("GetProductIndex", new RouteValueDictionary(new { CategoryId = pro.CategoryId }));
+            return RedirectToAction("ProductList");
         }
 
         //ForDisplayDetails

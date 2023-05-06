@@ -54,18 +54,20 @@ namespace ProductCategoryManagement.Controllers
         }
 
         //ForDeletingData
-        public ActionResult DeleteCategory(int id) 
+        public ActionResult DeleteCategory(int id)
         {
-            var row = db.Category.Where(model => model.CategoryId == id).FirstOrDefault();
-            return View(row); 
+            Category c = db.Category.FirstOrDefault(model => model.CategoryId == id);
+            return View(c);
         }
 
         [HttpPost]
-        public ActionResult DeleteCategory(Category c)
+        [ActionName("DeleteCategory")]
+        public ActionResult DeleteCategoryConfirm(int id)
         {
-            db.Entry(c).State = EntityState.Deleted;
+            Category c = db.Category.FirstOrDefault(model => model.CategoryId == id);
+            db.Category.Remove(c);
             db.SaveChanges();
-            return RedirectToAction("CategoryList", "Category");
+            return RedirectToAction("CategoryList");
         }
 
         //ForDisplayDetails
