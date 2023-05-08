@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -16,13 +17,11 @@ namespace ProductCategoryManagement.Controllers
         ServiceContext db = new ServiceContext();
 
         // GET: Category
-        public ActionResult CategoryList(int? page)
+        public async Task<ActionResult> CategoryList()
         {
-            var pageNumber = page ?? 1;
-            var pageSize = 5;
-            var cdata = db.Category.OrderBy(x => x.CategoryId).ToPagedList(pageNumber, pageSize);
-            return View(cdata); 
+            return View(await db.Category.ToListAsync()); 
         }
+
 
         //ForAddingData
         public ActionResult AddCategory()
@@ -30,55 +29,53 @@ namespace ProductCategoryManagement.Controllers
             return View(); 
         }
 
+
         [HttpPost]
-        public ActionResult AddCategory(Category c)
+        public async Task<ActionResult> AddCategory(Category c)
         {
             db.Category.Add(c);
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("CategoryList", "Category"); 
         }
+
 
         //ForEditingData
-        public ActionResult EditCategory(int id)
+        public async Task<ActionResult> EditCategory(int id)
         {
-            var row = db.Category.Where(model => model.CategoryId == id).FirstOrDefault();
-            return View(row); 
+            return View(await db.Category.Where(model => model.CategoryId == id).FirstOrDefaultAsync()); 
         }
 
+
         [HttpPost]
-        public ActionResult EditCategory(Category c)
+        public async Task<ActionResult> EditCategory(Category c)
         {
             db.Entry(c).State = EntityState.Modified;
-            db.SaveChanges();
+            await db.SaveChangesAsync();
             return RedirectToAction("CategoryList", "Category"); 
         }
 
+
         //ForDeletingData
-        public ActionResult DeleteCategory(int id)
+        public async Task<ActionResult> DeleteCategory(int id)
         {
-            Category c = db.Category.FirstOrDefault(model => model.CategoryId == id);
-            return View(c);
+            return View(await db.Category.FirstOrDefaultAsync(model => model.CategoryId == id));
         }
+
 
         [HttpPost]
         [ActionName("DeleteCategory")]
-        public ActionResult DeleteCategoryConfirm(int id)
+        public async Task<ActionResult> DeleteCategoryConfirm(int id)
         {
-            Category c = db.Category.FirstOrDefault(model => model.CategoryId == id);
-            db.Category.Remove(c);
-            db.SaveChanges();
+            db.Category.Remove(await db.Category.FirstOrDefaultAsync(model => model.CategoryId == id));
+            await db.SaveChangesAsync();
             return RedirectToAction("CategoryList");
         }
 
+
         //ForDisplayDetails
-        public ActionResult CategoryDetails(int id)
+        public async Task<ActionResult> CategoryDetails(int id)
         {
-            var detail = db.Category.Where(model => model.CategoryId == id).FirstOrDefault();
-            return View(detail); 
+            return View(await db.Category.Where(model => model.CategoryId == id).FirstOrDefaultAsync()); 
         }
-
-      
-
-
     }
 } 

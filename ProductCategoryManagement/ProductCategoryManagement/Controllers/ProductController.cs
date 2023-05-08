@@ -3,7 +3,9 @@ using ProductCategoryManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -12,87 +14,86 @@ namespace ProductCategoryManagement.Controllers
 {
     public class ProductController : Controller
     {
+
         ServiceContext db = new ServiceContext();
 
         // GET: Product
-        public ActionResult ProductList(int? page)
+        public async Task<ActionResult> ProductList()
         {
-            var pageNumber = page ?? 1;
-            var pageSize = 5;
-            var cdata = db.Product.OrderBy(x => x.ProductId).ToPagedList(pageNumber, pageSize);
-            return View(cdata);
+            return View(await db.Product.Include(m => m.Category).ToListAsync());
         }
 
+
         //ForAddingData
-        public ActionResult AddProduct()
+        public async Task<ActionResult> AddProduct()
         {
-            List<Category> categoryname = db.Category.ToList();
+            List<Category> categoryname = await db.Category.ToListAsync();
             ViewBag.Category = new SelectList(categoryname, "CategoryId", "CategoryName");
             return View();
         }
 
-        [HttpPost]
-        public ActionResult AddProduct(Product p)
-        {
-            try
-            {
-                db.Product.Add(p);
-                db.SaveChanges();
-                return RedirectToAction("ProductList", "Product");
-            }
-            catch (Exception)
-            {
 
-                throw;
-            }
+        [HttpPost]
+        public async Task<ActionResult> AddProduct(Product p)
+        {
+               db.Product.Add(p);
+               await db.SaveChangesAsync();
+               return RedirectToAction("ProductList", "Product");
         }
+
 
         //ForEditingData
-        public ActionResult EditProduct(int id)
+        public async Task<ActionResult> EditProduct(int id)
         {
-            List<Category> categoryname = db.Category.ToList();
-            ViewBag.Category = new SelectList(categoryname, "CategoryName", "CategoryName");
-            var row = db.Product.Where(model => model.ProductId == id).FirstOrDefault();
-            return View(row);
+            List<Category> categoryname = await db.Category.ToListAsync();
+            ViewBag.Category = new SelectList(categoryname, "CategoryId", "CategoryName");
+            return View(await db.Product.Where(model => model.ProductId == id).FirstOrDefaultAsync());
         }
 
+
         [HttpPost]
-        public ActionResult EditProduct(Product p)
+        public async Task<ActionResult> EditProduct(Product p)
         {
-            var prod = db.Product.FirstOrDefault(x => x.ProductId == p.ProductId);
+            var prod = await db.Product.Include(m => m.Category).FirstOrDefaultAsync(x => x.ProductId == p.ProductId);
 
             prod.ProductName = p.ProductName;
             prod.ProductId = p.ProductId;
             prod.ProductPrice = p.ProductPrice;
             prod.CategoryId = p.CategoryId;
             db.Entry(prod).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("ProductList", "Product");
+            await db.SaveChangesAsync();
+            return RedirectToAction("productlist", "product");
         }
 
+
         //ForDeletingData
-        public ActionResult DeleteProduct(int id)
+        public async Task<ActionResult> DeleteProduct(int id)
         {
-            Product p = db.Product.FirstOrDefault(model => model.ProductId == id);
-            return View(p);
+            return View(await db.Product.FirstOrDefaultAsync(model => model.ProductId == id));
         }
+
 
         [HttpPost]
         [ActionName("DeleteProduct")]
-        public ActionResult DeleteProductConfirm(int id)
+        public async Task<ActionResult> DeleteProductConfirm(int id)
         {
-            Product p = db.Product.FirstOrDefault(model => model.ProductId == id);
-            db.Product.Remove(p);
-            db.SaveChanges();
+            db.Product.Remove(await db.Product.FirstOrDefaultAsync(model => model.ProductId == id));
+            await db.SaveChangesAsync();
             return RedirectToAction("ProductList");
         }
 
+
         //ForDisplayDetails
-        public ActionResult ProductDetails(int id)
+        public async Task<ActionResult> ProductDetails(int id)
         {
-            var detail = db.Product.Where(model => model.ProductId == id).FirstOrDefault();
-            return View(detail);
+            return View(await db.Product.Where(model => model.ProductId == id).FirstOrDefaultAsync());
         }
 
+
+        public async Task<ActionResult> Activate(int CategoryId, int number)
+        {
+            var result = await db.Database.ExecuteSqlCommandAsync("EXEC ActivateDeactivateCategory  @CategoryId", new SqlParameter("@CategoryId", CategoryId));
+            return RedirectToAction("CategoryList", new { PageNumber = number });
+        }
     }
 }

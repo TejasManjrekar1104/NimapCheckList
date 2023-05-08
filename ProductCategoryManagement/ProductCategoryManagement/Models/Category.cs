@@ -13,5 +13,7 @@ namespace ProductCategoryManagement.Models
 
         [Required]
         public string CategoryName { get; set; } 
+
+        public bool IsActivate { get; set; }
     }
 }

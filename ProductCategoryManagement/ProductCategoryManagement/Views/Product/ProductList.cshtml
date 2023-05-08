@@ -1,11 +1,7 @@
-﻿@model PagedList.IPagedList<ProductCategoryManagement.Models.Product>
-
-@using ProductCategoryManagement.Models;
-@using PagedList;
-@using PagedList.Mvc;
+﻿@model IEnumerable<ProductCategoryManagement.Models.Product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ProductList";
 }
 
 <style>
@@ -15,30 +11,44 @@
 </style>
 <body class="image">
 
-    <center><h2><u>Product Table</u></h2></center>
-    <h4>
-        <b>
-            @Html.ActionLink("Insert New", "CategoryList")
-        </b>
-    </h4>
-    <br />
-    <table class="table table-striped">
-        <tr>
-            <th>ProductName</th>
-            <th>ProductPrice</th>
-            <th>CategoryName</th>
+    <h2>ProductList</h2>
 
+    <p>
+        @Html.ActionLink("Create New", "AddProduct")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category.CategoryName)
+            </th>
+            <th>Activities</th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.ProductName</td>
-                <td>@item.ProductPrice</td>
-                <td>@item.</td>
-                <td>@item.</td>
                 <td>
-
+                    @Html.DisplayFor(modelItem => item.ProductId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
                     @Html.ActionLink("Edit", "EditProduct", new { id = item.ProductId }) |
                     @Html.ActionLink("Details", "ProductDetails", new { id = item.ProductId }) |
                     @Html.ActionLink("Delete", "DeleteProduct", new { id = item.ProductId })
@@ -47,12 +57,4 @@
         }
 
     </table>
-
-    <div>
-        page @(Model.PageCount <Model.PageNumber ?0:Model.PageNumber)/@Model.PageCount
-    </div>
-    <div>
-        @Html.PagedListPager(Model, page => Url.Action("ProductList", new { page = page }))
-    </div>
-
-</body>
+    </body>
