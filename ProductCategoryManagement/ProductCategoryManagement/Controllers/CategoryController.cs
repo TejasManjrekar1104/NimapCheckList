@@ -3,6 +3,7 @@ using ProductCategoryManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -33,8 +34,13 @@ namespace ProductCategoryManagement.Controllers
         [HttpPost]
         public async Task<ActionResult> AddCategory(Category c)
         {
-            db.Category.Add(c);
-            await db.SaveChangesAsync();
+            bool IsActivate = false;
+            if (IsActivate == false)
+            {
+                c.IsActivate = true;
+                db.Category.Add(c);
+                await db.SaveChangesAsync();
+            }
             return RedirectToAction("CategoryList", "Category"); 
         }
 
@@ -76,6 +82,42 @@ namespace ProductCategoryManagement.Controllers
         public async Task<ActionResult> CategoryDetails(int id)
         {
             return View(await db.Category.Where(model => model.CategoryId == id).FirstOrDefaultAsync()); 
+        }
+
+
+        //ForActivateCategory
+        public async Task<ActionResult> ActivateCategory(int id)
+        {
+            var categoryToActivate = await db.Category.FirstOrDefaultAsync(c => c.CategoryId == id && !c.IsActivate);
+            if (categoryToActivate != null)
+            {
+                categoryToActivate.IsActivate = true;
+                var relatedProducts = db.Product.Where(p => p.CategoryId == id && !p.IsActivate);
+                foreach (var product in relatedProducts)
+                {
+                    product.IsActivate = true;
+                }
+                await db.SaveChangesAsync();
+            }
+            return RedirectToAction("CategoryList", "Category");
+        }
+
+
+        //ForDeactivateCategory
+        public async Task<ActionResult> DeactivateCategory(int id)
+        {
+            var categoryToDeactivate = await db.Category.FirstOrDefaultAsync(c => c.CategoryId == id && c.IsActivate);
+            if (categoryToDeactivate != null)
+            {
+                categoryToDeactivate.IsActivate = false;
+                var relatedProducts = db.Product.Where(p => p.CategoryId == id && p.IsActivate);
+                foreach (var product in relatedProducts)
+                {
+                    product.IsActivate = false;
+                }
+                await db.SaveChangesAsync();
+            }
+            return RedirectToAction("CategoryList", "Category");
         }
     }
 } 

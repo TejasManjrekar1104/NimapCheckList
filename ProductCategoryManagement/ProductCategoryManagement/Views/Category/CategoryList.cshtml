@@ -25,23 +25,47 @@
                 @Html.DisplayNameFor(model => model.CategoryName)
             </th>
             <th>Activities</th>
+            <th>Status</th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CategoryName)
-                </td>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        @{
+            if (item.IsActivate == true)
+            {
                 <td>
                     @Html.ActionLink("Edit", "EditCategory", new { id = item.CategoryId }) |
                     @Html.ActionLink("Details", "CategoryDetails", new { id = item.CategoryId }) |
                     @Html.ActionLink("Delete", "DeleteCategory", new { id = item.CategoryId })
+
                 </td>
-            </tr>
+            }
+                else
+                {
+                    <td>Category Is Deactivated</td>
+                }
+        }
+
+        <td>@(item.IsActivate ? "Active" : "InActive")</td>
+        <td>
+            @if (item.IsActivate)
+            {
+                @Html.ActionLink("Deactivate", "DeactivateCategory", new { id = item.CategoryId })
+            }
+            else
+            {
+                @Html.ActionLink("Activate", "ActivateCategory", new { id = item.CategoryId })
+            }
+        </td>
+    </tr>
         }
 
     </table>

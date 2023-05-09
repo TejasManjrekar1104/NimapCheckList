@@ -19,5 +19,6 @@ namespace ProductCategoryManagement.Models
 
         [ForeignKey("CategoryId")]
         public  Category Category { get; set; }
+        public bool IsActivate { get; internal set; }
     }
 } 

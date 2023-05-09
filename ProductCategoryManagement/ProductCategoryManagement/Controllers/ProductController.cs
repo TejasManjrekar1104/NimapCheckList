@@ -36,9 +36,14 @@ namespace ProductCategoryManagement.Controllers
         [HttpPost]
         public async Task<ActionResult> AddProduct(Product p)
         {
-               db.Product.Add(p);
-               await db.SaveChangesAsync();
-               return RedirectToAction("ProductList", "Product");
+            bool IsActivate = false;
+            if (IsActivate == false)
+            {
+                p.IsActivate = true;
+                db.Product.Add(p);
+                await db.SaveChangesAsync();
+            }
+              return RedirectToAction("ProductList", "Product");
         }
 
 
@@ -87,13 +92,6 @@ namespace ProductCategoryManagement.Controllers
         public async Task<ActionResult> ProductDetails(int id)
         {
             return View(await db.Product.Where(model => model.ProductId == id).FirstOrDefaultAsync());
-        }
-
-
-        public async Task<ActionResult> Activate(int CategoryId, int number)
-        {
-            var result = await db.Database.ExecuteSqlCommandAsync("EXEC ActivateDeactivateCategory  @CategoryId", new SqlParameter("@CategoryId", CategoryId));
-            return RedirectToAction("CategoryList", new { PageNumber = number });
         }
     }
 }
