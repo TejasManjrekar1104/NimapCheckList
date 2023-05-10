@@ -20,7 +20,7 @@ namespace ProductCategoryManagement.Controllers
         // GET: Category
         public async Task<ActionResult> CategoryList()
         {
-            return View(await db.Category.ToListAsync()); 
+            return View(await db.Category.OrderByDescending(x => x.CategoryId).ToListAsync()); 
         }
 
 
@@ -34,13 +34,9 @@ namespace ProductCategoryManagement.Controllers
         [HttpPost]
         public async Task<ActionResult> AddCategory(Category c)
         {
-            bool IsActivate = false;
-            if (IsActivate == false)
-            {
-                c.IsActivate = true;
-                db.Category.Add(c);
-                await db.SaveChangesAsync();
-            }
+            c.IsActivate = true;
+            db.Category.Add(c);
+            await db.SaveChangesAsync();
             return RedirectToAction("CategoryList", "Category"); 
         }
 
