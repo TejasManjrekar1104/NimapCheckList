@@ -12,7 +12,6 @@ using System.Web.Routing;
 
 namespace ProductCategoryManagement.Controllers
 {
-    [Authorize]
     public class ProductController : Controller
     {
 

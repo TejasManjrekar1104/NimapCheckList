@@ -12,7 +12,6 @@ using System.Web.Mvc;
 
 namespace ProductCategoryManagement.Controllers
 {
-    [Authorize]
     public class CategoryController : Controller
     {
 

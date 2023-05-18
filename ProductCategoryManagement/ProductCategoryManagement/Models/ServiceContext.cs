@@ -12,6 +12,6 @@ namespace ProductCategoryManagement.Models
     {
         public DbSet<Category> Category { get; set; } 
         public DbSet<Product> Product { get; set; } 
-        public DbSet<UserAccount> UserAccount { get; set; }
+        public DbSet<Account> Account { get; set; }
     }
 }

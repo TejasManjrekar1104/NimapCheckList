@@ -6,9 +6,11 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top"> 
+    <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -19,15 +21,23 @@
                 @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("AddCategory", "AddCategory", "Category")</li>
-                    <li>@Html.ActionLink("CategoryList", "CategoryList", "Category")</li>
-                    <li>@Html.ActionLink("AddProduct", "AddProduct", "Product")</li>
-                    <li>@Html.ActionLink("ProductList", "ProductList", "Product")</li>
-                    <li>@Html.ActionLink("Login", "Login", "Account")</li>
-                    <li>@Html.ActionLink("Signup", "Register", "Account")</li>
-                    
-                </ul>
+
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("AddCategory", "AddCategory", "Category")</li>
+                        <li>@Html.ActionLink("CategoryList", "CategoryList", "Category")</li>
+                        <li>@Html.ActionLink("AddProduct", "AddProduct", "Product")</li>
+                        <li>@Html.ActionLink("ProductList", "ProductList", "Product")</li>
+                        <li>
+                            @Html.ActionLink("Logout", "Logout", "Account")
+                        </li>
+                        <li><a>Welcome - @User.Identity.Name</a></li>
+                    </ul>
+                }
+
+
             </div>
         </div>
     </div>
