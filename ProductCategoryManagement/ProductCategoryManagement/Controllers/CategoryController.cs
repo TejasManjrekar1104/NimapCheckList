@@ -18,9 +18,17 @@ namespace ProductCategoryManagement.Controllers
         ServiceContext db = new ServiceContext();
 
         // GET: Category
-        public async Task<ActionResult> CategoryList()
+        public async Task<ActionResult> CategoryList(int page = 1)
         {
-            return View(await db.Category.OrderByDescending(x => x.CategoryId).ToListAsync()); 
+            int pageSize = 5;
+            var totalCount = await db.Category.CountAsync();
+            var totalPages = (int)Math.Ceiling((decimal)totalCount / pageSize);
+            var Category = await db.Category.OrderByDescending(x => x.CategoryId).Skip((page -1)  * pageSize).Take(pageSize).ToListAsync();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+
+            return View(Category); 
         }
 
 
@@ -52,6 +60,7 @@ namespace ProductCategoryManagement.Controllers
         public async Task<ActionResult> EditCategory(Category c)
         {
             db.Entry(c).State = EntityState.Modified;
+            c.IsActivate = true;
             await db.SaveChangesAsync();
             return RedirectToAction("CategoryList", "Category"); 
         }

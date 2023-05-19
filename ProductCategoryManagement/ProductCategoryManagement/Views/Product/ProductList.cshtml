@@ -14,13 +14,10 @@
     <h2>ProductList</h2>
 
     <p>
-        @Html.ActionLink("Create New", "AddProduct")
+        @Html.ActionLink("Create New", "AddProduct", null, new { @class = "btn btn-success" })
     </p>
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductId)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.ProductName)
             </th>
@@ -35,32 +32,42 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                @{
-                    if (item.IsActivate == true)
-                    {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductPrice)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Category.CategoryName)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "EditProduct", new { id = item.ProductId }) |
-                            @Html.ActionLink("Details", "ProductDetails", new { id = item.ProductId }) |
-                            @Html.ActionLink("Delete", "DeleteProduct", new { id = item.ProductId })
-                        </td>
-                    }
-                }
+    <tr>
+        @{
+            if (item.IsActivate == true)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditProduct", new { id = item.CategoryId }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Details", "ProductDetails", new { id = item.CategoryId }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Delete", "DeleteProduct", new { id = item.CategoryId }, new { @class = "btn btn-danger" })
+                </td>
+            }
+        }
 
-            </tr>
+    </tr>
         }
 
     </table>
+
+    <div>
+    @if (ViewBag.TotalPages > 1)
+    {
+
+        for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            var isActive = (i == ViewBag.CurrentPage) ? "active" : "";
+            <a href="@Url.Action("ProductList", "Product", new { page = i })" class="btn btn-primary">@i</a>
+        }
+    }
+    </div>
+
 </body>

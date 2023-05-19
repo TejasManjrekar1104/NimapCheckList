@@ -14,13 +14,10 @@
     <h2>CategoryList</h2>
 
     <p>
-        @Html.ActionLink("Create New", "AddCategory")
+        @Html.ActionLink("Create New", "AddCategory",null, new { @class = "btn btn-success" })
     </p>
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryId)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.CategoryName)
             </th>
@@ -30,43 +27,50 @@
 
         @foreach (var item in Model)
         {
-    <tr>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryName)
-        </td>
-        @{
-            if (item.IsActivate == true)
-            {
+            <tr>
                 <td>
-                    @Html.ActionLink("Edit", "EditCategory", new { id = item.CategoryId }) |
-                    @Html.ActionLink("Details", "CategoryDetails", new { id = item.CategoryId }) |
-                    @Html.ActionLink("Delete", "DeleteCategory", new { id = item.CategoryId })
-
+                    @Html.DisplayFor(modelItem => item.CategoryName)
                 </td>
-            }
-                else
-                {
-                    <td>Category Is Deactivated</td>
+                @{
+                    if (item.IsActivate == true)
+                    {
+                                <td>
+                                    @Html.ActionLink("ShowProduct", "ShowProduct", "Product", new { id = item.CategoryId }, new { @class = "btn btn-success" }) |
+                                    @Html.ActionLink("Edit", "EditCategory", new { id = item.CategoryId }, new { @class = "btn btn-warning" }) |
+                                    @Html.ActionLink("Details", "CategoryDetails", new { id = item.CategoryId }, new { @class = "btn btn-primary" }) |
+                                    @Html.ActionLink("Delete", "DeleteCategory", new { id = item.CategoryId }, new { @class = "btn btn-danger" })
+                                </td>
+                    }
+                    else
+                    {
+                        <td>Category Is Deactivated</td>
+                    }
                 }
-        }
 
-        <td>@(item.IsActivate ? "Active" : "Inactive")</td>
-        <td>
-            @if (item.IsActivate)
-            {
-                @Html.ActionLink("Deactivate", "DeactivateCategory", new { id = item.CategoryId })
-            }
-            else
-            {
-                @Html.ActionLink("Activate", "ActivateCategory", new { id = item.CategoryId })
-            }
-        </td>
-    </tr>
+                <td>@(item.IsActivate ? "Active" : "Inactive")</td>
+                <td>
+                    @if (item.IsActivate)
+                    {
+                        @Html.ActionLink("Deactivate", "DeactivateCategory", new { id = item.CategoryId }, new { @class = "btn btn-danger" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Activate", "ActivateCategory", new { id = item.CategoryId }, new { @class = "btn btn-success" })
+                    }
+                </td>
+            </tr>
         }
 
     </table>
-    </body>
+    <div class="pagination">
+        @if (ViewBag.TotalPages > 1)
+        {
+
+        for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            var isActive = (i == ViewBag.CurrentPage) ? "active" : "";
+                <a href="@Url.Action("CategoryList", "Category", new { page = i })" class="btn btn-primary">@i</a>
+            }
+        }
+    </div>
+</body>

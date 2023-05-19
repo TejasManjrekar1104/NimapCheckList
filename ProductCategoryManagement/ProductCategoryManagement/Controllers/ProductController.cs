@@ -17,10 +17,19 @@ namespace ProductCategoryManagement.Controllers
 
         ServiceContext db = new ServiceContext();
 
+        public object[] ProductId { get; private set; }
+
         // GET: Product
-        public async Task<ActionResult> ProductList()
+        public async Task<ActionResult> ProductList(int page = 1)
         {
-            return View(await db.Product.Include(m => m.Category).OrderByDescending(x => x.ProductId).ToListAsync());
+            int pageSize = 6;
+            var totalCount = await db.Product.CountAsync();
+            var totalPages = (int)Math.Ceiling((decimal)totalCount / pageSize);
+            var Product = await db.Product.Include(m => m.Category).OrderByDescending(x => x.ProductId).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.TotalPages = totalPages;
+            return View(Product);
         }
 
 
@@ -35,7 +44,7 @@ namespace ProductCategoryManagement.Controllers
 
         [HttpPost]
         public async Task<ActionResult> AddProduct(Product p)
-        { 
+        {
             p.IsActivate = true;
             db.Product.Add(p);
             await db.SaveChangesAsync();
@@ -89,5 +98,11 @@ namespace ProductCategoryManagement.Controllers
         {
             return View(await db.Product.Where(model => model.ProductId == id).FirstOrDefaultAsync());
         }
+
+        public async Task<ActionResult> ShowProduct(int id)
+        { 
+            return View(await db.Product.Include(x => x.Category).Where(m => m.CategoryId == id).ToListAsync());
+        }
+
     }
 }
